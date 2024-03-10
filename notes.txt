@@ -1,0 +1,5 @@
+docker
+logger
+express
+zod
+genieX
