@@ -1,7 +1,8 @@
 import express from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
-import { dbRouter } from "./routes/dbRoutes";
+import { dbRouter } from "./routes/dbRoutes.js";
+import { initializeFirebase } from "./dbConnection.js";
 
 dotenv.config();
 
@@ -17,5 +18,10 @@ app.use(
   })
 );
 
-app.use("/api/");
-app.use("db", dbRouter);
+app.use((req, res, next) => {
+  initializeFirebase();
+  next();
+});
+
+app.use("/api/hi", (req, res) => res.json("👍"));
+app.use("/api/db", dbRouter);

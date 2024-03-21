@@ -1,6 +1,9 @@
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { Firestore, getFirestore } from "firebase/firestore";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 const firebaseConfig = {
   apiKey: process.env.API_KEY,
@@ -12,13 +15,17 @@ const firebaseConfig = {
   measurementId: process.env.MEASUREMENT_ID,
 };
 
+let firebaseApp: FirebaseApp;
+export let firestoreDb: Firestore;
+
 export const initializeFirebase = () => {
   try {
-    const app = initializeApp(firebaseConfig);
-    const fireStoreDB = getFirestore();
-    return { app: app, db: fireStoreDB };
+    firebaseApp = initializeApp(firebaseConfig);
+    firestoreDb = getFirestore();
+    return [firebaseApp, firestoreDb];
   } catch (err) {
     console.log(err);
   }
-  return {};
 };
+
+export const getFirebaseApp = () => firebaseApp;
