@@ -1,5 +1,4 @@
 import { FirebaseApp, initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { Firestore, getFirestore } from "firebase/firestore";
 import * as dotenv from "dotenv";
 
