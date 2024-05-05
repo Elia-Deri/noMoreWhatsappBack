@@ -15,16 +15,17 @@ const firebaseConfig = {
 };
 
 let firebaseApp: FirebaseApp;
-export let firestoreDb: Firestore;
+let firestoreDb: Firestore;
 
 export const initializeFirebase = () => {
   try {
     firebaseApp = initializeApp(firebaseConfig);
     firestoreDb = getFirestore();
-    return [firebaseApp, firestoreDb];
+    return firebaseApp;
   } catch (err) {
     console.log(err);
   }
 };
 
 export const getFirebaseApp = () => firebaseApp;
+export const getDb = () => firestoreDb;
