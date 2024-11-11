@@ -10,7 +10,7 @@ import { UpdateTodoDto } from './dto/update-todo.dto';
 export class TodosService {
   constructor(
     @InjectRepository(Todo)
-    private todosRepository: Repository<Todo>,
+    private todosRepo: Repository<Todo>,
   ) {}
 
   create(createTodoDto: CreateTodoDto) {
@@ -18,7 +18,7 @@ export class TodosService {
   }
 
   async findAll() {
-    return this.todosRepository.find();
+    return this.todosRepo.find();
   }
 
   findOne(id: number) {

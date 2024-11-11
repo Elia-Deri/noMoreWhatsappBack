@@ -1,5 +1,6 @@
+import { Type } from 'class-transformer';
 import { IsBoolean, IsDate, IsObject, IsString } from 'class-validator';
-import { Column, Entity, JoinTable, ManyToMany, ObjectIdColumn } from 'typeorm';
+import { Column, Entity, ObjectIdColumn } from 'typeorm';
 
 import { Contact } from 'src/contacts/entities/contact.entity';
 
@@ -18,6 +19,7 @@ export class Todo {
 
   @Column({ nullable: true })
   @IsDate()
+  @Type(() => Date)
   dead_line?: Date;
 
   @Column()
