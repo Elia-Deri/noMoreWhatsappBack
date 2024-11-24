@@ -11,27 +11,16 @@ import { Util } from './utils/entities/util.entity';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
-    process.env.TYPE === 'prod'
-      ? TypeOrmModule.forRoot({
-          type: 'mongodb',
-          url: process.env.MONGO_URI,
-          database: 'loopy',
-          logging: true,
-          synchronize: true,
-          ssl: true,
-          useUnifiedTopology: true,
-          entities: [Todo, Contact, Util],
-          autoLoadEntities: true,
-        })
-      : TypeOrmModule.forRoot({
-          type: 'mongodb',
-          host: 'localhost',
-          database: 'loopy',
-          logging: true,
-          synchronize: true,
-          entities: [Todo, Contact, Util],
-          autoLoadEntities: true,
-        }),
+    TypeOrmModule.forRoot({
+      type: 'mongodb',
+      url: process.env.MONGO_URI,
+      database: 'loopy',
+      logging: true,
+      synchronize: true,
+      ssl: true,
+      entities: [Todo, Contact, Util],
+      autoLoadEntities: true,
+    }),
     TodosModule,
     ContactsModule,
     UtilsModule,

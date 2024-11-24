@@ -18,6 +18,8 @@ export class TodosService {
   }
 
   async findAll() {
+    console.log(await this.todosRepo.find());
+
     return this.todosRepo.find();
   }
 

@@ -2,14 +2,14 @@ import { Type } from 'class-transformer';
 import {
   IsBoolean,
   IsDate,
-  IsObject,
+  IsNotEmpty,
   IsOptional,
   IsString,
+  Length,
 } from 'class-validator';
 
-import { Contact } from 'src/contacts/entities/contact.entity';
-
 export class CreateTodoDto {
+  @IsNotEmpty()
   @IsString()
   name: string;
 
@@ -19,16 +19,18 @@ export class CreateTodoDto {
 
   @IsOptional()
   @IsDate()
-  @Type(() => Date) // Ensures that the value is transformed into a Date instance
+  @Type(() => Date)
   dead_line?: Date;
 
+  @IsNotEmpty()
   @IsString()
   location: string;
 
-  @IsObject()
-  contact: Contact;
+  @IsString()
+  @Length(9, 10)
+  contact_number: string;
 
   @IsOptional()
   @IsBoolean()
-  done?: boolean; // Set as optional if you want to allow the default value
+  done?: boolean;
 }
